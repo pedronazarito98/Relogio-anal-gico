@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='style.css'>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap" rel="stylesheet">
+    <title>Relogio Analogico</title>
+</head>
+<body>
+    <div class="card">
+        <div class='top-menu'>
+            <h3> Segunda, Abr 2021 </h3>
+            <div class='battery'>
+                <span>42%</span>
+                <img  src='battery.png'/>
+            </div>
+        </div>
+
+        <div class='clock'>
+            <div class='wrap'>
+                <span class='hour'></span>
+                <span class='minute'></span>
+                <span class='second'></span>
+                <span class='dot'></span>
+            </div>
+            <div class='timing'>
+                <span>
+                    <span class='hours'></span> : <span class='mins'></span>
+                </span>
+                <p> Segunda-Feira, Abr 2021 </p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var inc = 1000;
+
+    clock();
+
+    function clock() {
+        const date = new Date();
+        const hours = ((date.getHours() +11) % 12 + 1);
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+        const hour = hours * 30;
+        const minute = minutes * 6;
+        const second = seconds * 6;
+
+        const h = (hours < 10) ? '0' + hours : hours;
+        const m = (minutes < 10) ? '0' + minutes : minutes;
+
+        document.querySelector('.hours').innerHTML = h;
+        document.querySelector('.mins').innerHTML = m;
+
+        document.querySelector('.hour').style.transform = `rotate(${hour}deg)`
+        document.querySelector('.minute').style.transform = `rotate(${minute}deg)`
+        document.querySelector('.second').style.transform = `rotate(${second}deg)`
+
+    }
+    setInterval(clock, inc)
+</script>
+</html>
